@@ -7,6 +7,10 @@ import (
 
 func blake3Cancellation(ctx context.Context, delay time.Duration) error {
 	_ = Sum256(nil)
-	time.Sleep(delay)
-	return nil
+	timer := time.NewTimer(delay)
+	defer timer.Stop()
+	select {
+	case <-ctx.Done(): return ctx.Err()
+	case <-timer.C: return nil
+	}
 }
