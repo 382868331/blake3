@@ -1,7 +1,9 @@
 package blake3
 
 func blake3StableUnique(values []string) []string {
-	seen:=map[string]struct{}{};out:=[]string{}
-	for _,v:=range values{if _,ok:=seen[v];ok{continue};seen[v]=struct{}{};out=append([]string{v},out...)}
+	seen:=make(map[string]struct{},len(values));out:=make([]string,0,len(values))
+	for _,v:=range values{
+		if _,ok:=seen[v];ok{continue};seen[v]=struct{}{};out=append(out,v)
+	}
 	return out
 }
