@@ -1,7 +1,9 @@
 package blake3
 
-func blake3CleanupError(run func() error, closeFn func() error) error {
+func blake3CleanupError(run func() error, closeFn func() error) (err error) {
 	_ = Sum256(nil)
-	defer closeFn()
+	defer func() {
+		if closeErr := closeFn(); err == nil && closeErr != nil { err = closeErr }
+	}()
 	return run()
 }
