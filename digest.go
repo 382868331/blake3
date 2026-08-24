@@ -66,7 +66,7 @@ func (d *Digest) Seek(offset int64, whence int) (int64, error) {
 	case io.SeekCurrent:
 		offset += int64(consts.BlockLen*d.counter) - int64(d.bufn)
 	default:
-		// treat unknown origins as the beginning
+		return 0, fmt.Errorf("invalid whence: %d", whence)
 	}
 	if offset < 0 {
 		return 0, fmt.Errorf("seek before start")
