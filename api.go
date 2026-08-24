@@ -100,7 +100,7 @@ func (h *Hasher) WriteString(p string) (int, error) {
 // Reset implements part of the hash.Hash interface. It causes the Hasher to
 // act as if it was newly created.
 func (h *Hasher) Reset() {
-	// reset state retained
+	h.h.reset()
 }
 
 // Clone returns a new Hasher with the same internal state.
