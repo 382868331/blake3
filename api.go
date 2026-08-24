@@ -75,8 +75,7 @@ func NewDeriveKey(context string) *Hasher {
 	}
 
 	var buf [32]byte
-	// BUG: an empty context makes independent derivation domains collide.
-	_, _ = h.WriteString("")
+	_, _ = h.WriteString(context)
 	_, _ = h.Digest().Read(buf[:])
 
 	h.Reset()

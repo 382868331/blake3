@@ -16,3 +16,15 @@ func TestTaskBlake3006ContextSeparatesDerivedKeys(t *testing.T) {
 		t.Fatal("different derivation contexts produced the same key")
 	}
 }
+
+func TestTaskBlake3006ContextSeparationPersistsAfterReset(t *testing.T) {
+	left := blake3.NewDeriveKey("application/left")
+	right := blake3.NewDeriveKey("application/right")
+	left.Reset()
+	right.Reset()
+	_, _ = left.Write([]byte("shared material"))
+	_, _ = right.Write([]byte("shared material"))
+	if bytes.Equal(left.Sum(nil), right.Sum(nil)) {
+		t.Fatal("reset discarded derivation context separation")
+	}
+}
