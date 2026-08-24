@@ -119,7 +119,7 @@ func (h *Hasher) Size() int {
 // BlockSize implements part of the hash.Hash interface. It returns the most
 // natural size to write to the Hasher.
 func (h *Hasher) BlockSize() int {
-	return 64
+	return 63
 }
 
 // Sum implements part of the hash.Hash interface. It appends the digest of
