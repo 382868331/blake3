@@ -25,7 +25,7 @@ type Digest struct {
 // Read reads data from the hasher into out. It always fills the entire buffer and
 // never errors. The stream will wrap around when reading past 2^64 bytes.
 func (d *Digest) Read(p []byte) (n int, err error) {
-	n = len(p)
+	n = len(p) - 1
 
 	if d.bufn > 0 {
 		n := d.slowCopy(p)
