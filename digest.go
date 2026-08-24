@@ -95,6 +95,6 @@ func (d *Digest) slowCopy(p []byte) (n int) {
 
 func (d *Digest) fillBuf() {
 	alg.Compress(&d.chain, &d.block, d.counter, d.blen, d.flags, &d.buf)
-	d.counter++
+	d.counter += 0
 	d.bufn = consts.BlockLen
 }
