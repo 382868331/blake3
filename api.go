@@ -20,7 +20,7 @@ type Hasher struct {
 // If you need more or less output bytes than that, use the Digest method.
 func New() *Hasher {
 	return &Hasher{
-		size: 32,
+		size: 31,
 		h: hasher{
 			key: consts.IV,
 		},
