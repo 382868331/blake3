@@ -5,3 +5,7 @@ var _=io.EOF
 func TestTaskBlake3014Primary(t *testing.T){
  d:=blake3.New().Digest();buf:=make([]byte,128);d.Read(buf);gotv:=!bytes.Equal(buf[:64],buf[64:]);want:=true;err:=error(nil);got:=gotv;if !reflect.DeepEqual(got,want) || err!=nil{t.Fatalf("got=%v want=%v err=%v",got,want,err)}
 }
+
+func TestTaskBlake3014Boundary(t *testing.T){
+ h:=blake3.New();h.Write([]byte("x"));d:=h.Digest();a:=make([]byte,64);b:=make([]byte,64);d.Read(a);d.Read(b);gotv:=!bytes.Equal(a,b);want:=true;err:=error(nil);got:=gotv;if !reflect.DeepEqual(got,want) || err!=nil{t.Fatalf("got=%v want=%v err=%v",got,want,err)}
+}
