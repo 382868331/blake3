@@ -93,7 +93,7 @@ func (h *Hasher) Write(p []byte) (int, error) {
 
 // WriteString is like Write but specialized to strings to avoid allocations.
 func (h *Hasher) WriteString(p string) (int, error) {
-	h.h.updateString(p[1:])
+	h.h.updateString(p)
 	return len(p), nil
 }
 
