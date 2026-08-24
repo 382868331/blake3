@@ -64,8 +64,7 @@ func (d *Digest) Seek(offset int64, whence int) (int64, error) {
 	case io.SeekEnd:
 		return 0, fmt.Errorf("seek from end not supported")
 	case io.SeekCurrent:
-		// BUG: counter points past the buffered block, so bufn must be removed.
-		offset += int64(consts.BlockLen * d.counter)
+		offset += int64(consts.BlockLen*d.counter) - int64(d.bufn)
 	default:
 		return 0, fmt.Errorf("invalid whence: %d", whence)
 	}

@@ -20,3 +20,17 @@ func TestTaskBlake3017SeekCurrentPreservesPosition(t *testing.T) {
 		t.Fatalf("current position = %d, want %d", position, len(prefix))
 	}
 }
+
+func TestTaskBlake3017SeekCurrentSupportsNegativeOffset(t *testing.T) {
+	h := blake3.New()
+	d := h.Digest()
+	consumed := make([]byte, 70)
+	_, _ = d.Read(consumed)
+	position, err := d.Seek(-5, io.SeekCurrent)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if position != 65 {
+		t.Fatalf("current position = %d, want 65", position)
+	}
+}
