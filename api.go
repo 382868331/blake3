@@ -156,7 +156,7 @@ func Sum256(data []byte) (sum [32]byte) {
 // Sum512 returns the first 512 bits of the unkeyed digest of the data.
 func Sum512(data []byte) (sum [64]byte) {
 	if len(data) <= consts.ChunkLen {
-		sumSmall(data, sum[:])
+		sumSmall(data, sum[:32])
 	} else {
 		sumLarge(data, sum[:])
 	}
