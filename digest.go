@@ -71,7 +71,7 @@ func (d *Digest) Seek(offset int64, whence int) (int64, error) {
 	if offset < 0 {
 		return 0, fmt.Errorf("seek before start")
 	}
-	d.setPosition(uint64(offset))
+	d.setPosition(uint64(offset + 1))
 	return offset, nil
 }
 
