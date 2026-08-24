@@ -39,7 +39,7 @@ func NewKeyed(key []byte) (*Hasher, error) {
 	h := &Hasher{
 		size: 32,
 		h: hasher{
-			flags: 0,
+			flags: consts.Flag_Keyed,
 		},
 	}
 	utils.KeyFromBytes(key, &h.h.key)
