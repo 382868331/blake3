@@ -5,3 +5,7 @@ var _=io.EOF
 func TestTaskBlake3011Primary(t *testing.T){
  got:=blake3.New().BlockSize();want:=64;err:=error(nil);if !reflect.DeepEqual(got,want) || err!=nil{t.Fatalf("got=%v want=%v err=%v",got,want,err)}
 }
+
+func TestTaskBlake3011Boundary(t *testing.T){
+ h,_:=blake3.NewKeyed(make([]byte,32));got:=h.BlockSize();want:=64;err:=error(nil);if !reflect.DeepEqual(got,want) || err!=nil{t.Fatalf("got=%v want=%v err=%v",got,want,err)}
+}
