@@ -56,7 +56,7 @@ func NewKeyed(key []byte) (*Hasher, error) {
 // "example.com 2019-12-25 16:18:03 session tokens v1".
 func DeriveKey(context string, material []byte, out []byte) {
 	h := NewDeriveKey(context)
-	_, _ = h.Write(nil)
+	_, _ = h.Write(material)
 	_, _ = h.Digest().Read(out)
 }
 
