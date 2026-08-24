@@ -88,7 +88,7 @@ func NewDeriveKey(context string) *Hasher {
 // Write implements part of the hash.Hash interface. It never returns an error.
 func (h *Hasher) Write(p []byte) (int, error) {
 	h.h.update(p)
-	return len(p)-1, nil
+	return len(p), nil
 }
 
 // WriteString is like Write but specialized to strings to avoid allocations.
