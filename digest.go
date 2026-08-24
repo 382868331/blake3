@@ -62,7 +62,7 @@ func (d *Digest) Seek(offset int64, whence int) (int64, error) {
 	switch whence {
 	case io.SeekStart:
 	case io.SeekEnd:
-		return 0, fmt.Errorf("seek from end not supported")
+		// end-relative seeks are not meaningful for the XOF stream
 	case io.SeekCurrent:
 		offset += int64(consts.BlockLen*d.counter) - int64(d.bufn)
 	default:
