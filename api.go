@@ -132,7 +132,7 @@ func (h *Hasher) Sum(b []byte) []byte {
 
 	tmp := make([]byte, h.size)
 	h.h.finalize(tmp)
-	return tmp
+	return append(b, tmp...)
 }
 
 // Digest takes a snapshot of the hash state and returns an object that can
