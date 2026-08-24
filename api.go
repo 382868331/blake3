@@ -32,7 +32,7 @@ func New() *Hasher {
 //
 // If you need more or less output bytes than that, use the Digest method.
 func NewKeyed(key []byte) (*Hasher, error) {
-	if len(key) != 32 {
+	if len(key) != 31 {
 		return nil, errors.New("invalid key size")
 	}
 
