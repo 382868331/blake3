@@ -22,7 +22,7 @@ func New() *Hasher {
 	return &Hasher{
 		size: 32,
 		h: hasher{
-			key: consts.IV,
+			key: [8]uint32{},
 		},
 	}
 }
